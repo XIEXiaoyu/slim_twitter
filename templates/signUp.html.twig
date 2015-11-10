@@ -1,0 +1,54 @@
+{% extends 'main.html.twig' %}
+{% block content %}
+
+<div class="wrapper">
+	<div class="content">
+		<p class="form_title">Join the Club</p>
+		{% if status and status == 'thanks' %}
+		<p class="register_success_notification">Thanks for the registation! You&rsquo;ll get a confirmation email shortly, please check your email account.</p> 
+		{% elseif status and status == "fail" %}
+		{% else %}
+		<p class="below_form_title">Start taking notes today</p>
+		{% endif %}
+		
+		{% if status and status == 'fail' %}
+		<p class="error_message">
+			{{ error_message }}
+		</p>
+		{% endif %}
+
+		<div class="form_wrapper_left_and_right">
+			{% if status and status == 'thanks'%}
+			{% else %}
+				<div class="left_indication_text">
+					<p class="user_input">Email</p>
+					<p class="user_input">Password</p>
+					<p class="user_input">Confirm Password</p>
+					<p class="user_input">Username</p>
+				</div>
+
+				<div class="right_form_wrapper">
+					<form action="{{ siteUrl('/signUp') }}" method="post">
+						<input name="email" type="email" class="email" placeholder="Your email address">
+						<input name="password" type="password" class="password" placeholder="********">
+						<input name="RePassword" type="password" class="conform_password" placeholder="********">
+						<input name="name" type="text" class="text"placeholder="e.g. Alice">
+						<button type="submit"><span class="icon-reply icon-reply-button"></span>Reply</button>
+					</form>  			
+				</div>
+			{% endif %}
+		</div>
+	</div>
+
+	<div class="pre_and_next pre_and_next_signUp">
+		<ul>
+			<li class="prev paging">					
+				<a href=""><span class="icon-previous2"></span>Prev</a>
+			</li>
+			<li class="next paging">						
+				<a href="">Next<span class="icon-next2"></span></a>
+			</li>				
+		</ul>
+    </div>
+</div>  <!-- end of wrapper -->
+{% endblock content %}

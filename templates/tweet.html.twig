@@ -1,0 +1,86 @@
+{% extends 'main.html.twig' %}
+	{% block content %}
+		<div class="wrapper">
+			<section>
+				<div class="tweet">
+					<div class="left_photo">
+						<img src="img/zhiyan_head.png" alt="Photograph of Zhiyan" class="profile-photo">
+					</div>
+					<div class="right_text">
+						<p class="twitterer">Duan Zhiyan</p>
+						<p class="at_message">@zhiyan · Jan 16</p>
+						<p class="twitter_message">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu.
+						</p>
+						<div class="function_links">
+							<ul>
+								<li class="reply-func">
+									<a href="url"><span class="icon-reply icon-func"></span>Reply</a>
+								</li>
+								<li>
+									<a href=""><span class="icon-like icon-func"></span>Like</a>
+								</li>
+								<li>
+									<a href=""><span class="icon-share2 icon-func"></span>Share</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section> 
+				<div class="posts">
+					<div class="post top">
+						<div class="left_photo">
+							<img src="img/49.jpg" alt="Photograph of Chris" class="profile-photo">
+						</div>
+						<div class="right_text">
+							<p class="twitterer">Chris</p>
+							<p class="at_message">@Chris · Jan 16</p>
+							<p class="twitter_message post_message">Velit fugiat harum ullam accusantium aspernatur repellendus dicta consequuntur. Assumenda voluptas dicta sit debitis provident esse.
+							</p>
+						</div>
+					</div>	
+					<div class="post middle">
+						<div class="left_photo">
+							<img src="img/58.jpg" alt="Photograph of Chris" class="profile-photo">
+						</div>
+						<div class="right_text">
+							<p class="twitterer">Chris</p>
+							<p class="at_message">@Chris · Jan 16</p>
+							<p class="twitter_message post_message">Velit fugiat harum ullam accusantium aspernatur repellendus dicta consequuntur. Assumenda voluptas dicta sit debitis provident esse.
+							</p>
+						</div>
+					</div>
+					<div class="post last">
+						<div class="left_photo">
+							<img src="img/88.jpg" alt="Photograph of Chris" class="profile-photo">
+						</div>
+						<div class="right_text">
+							<p class="twitterer">Chris</p>
+							<p class="at_message">@Chris · Jan 16</p>
+							<p class="twitter_message post_message">Velit fugiat harum ullam accusantium aspernatur repellendus dicta consequuntur. Assumenda voluptas dicta sit debitis provident esse.</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<div class="post new_post">
+					<div class="left_photo">
+						<img src="img/73.jpg" alt="Photograph of Chris" class="profile-photo">
+					</div>
+
+					<div class="right_text form">
+						<form>
+							<textarea   class="tweet leave_a_message"
+									    placeholder="Join the conversation ..."></textarea> 
+							<!-- opening and closing tag of textarea must be on the same line -->
+					
+							<button class="reply">Reply</button>
+						</from>				
+					</div>
+				</div>
+			</section>
+		</div>
+	{% endblock content %}  

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% block head %}
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" type="text/css" href="css/tweet.css">
+	<link rel="stylesheet" type="text/css" href="icomoon/style.css">
+	{% endblock head %}
+</head>
+
+<body>
+	{% block heading %}
+	<div class="heading">
+		<header>			
+			<a href="" class="note"><span class="icon-quill"></span>Notes</a>
+			<nav>
+				<ul>
+					<li class="selected">					
+						<a href="{{ baseUrl() }}"><span class="icon-home3 icon"></span>Home</a>
+					</li>
+					<li>						
+						<a href=""><span class="icon-drawer icon"></span>Messages</a>
+					</li>
+					<li>						
+						<a href=""><span class="icon-heart icon"></span>Favorites</a>
+					</li>
+					<li>
+						<a href="{{ siteUrl('/signUp') }}"><span class="icon-signup icon"></span>Signup</a>
+					</li>
+					<li>
+						<a href="{{ siteUrl('/logIn') }}"><span class="icon-login icon"></span>Login</a>
+					</li>
+				</ul>
+			</nav>
+			<img src="img/73.jpg" alt="Photograph of Chris" class="nav-photo">
+		</header>
+    </div>
+    {% endblock heading %}
+
+	{% block content %}
+	{%  endblock content %}
+</body>
+</html>
