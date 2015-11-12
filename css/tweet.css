@@ -113,23 +113,19 @@ nav a {
 twitter message
 **************************************/
 
-.form_wrapper {
+.tweet {
 	overflow:hidden;
 	background-color: #ffffff; 
 	border: 1px solid #d8d8d8;
 	max-width: 750px;
 	border-radius: 4px;
-	margin: 35px auto 0;
+	margin: 25px auto 0;
 	padding-top: 25px;
 	padding-left: 25px;
 	padding-right: 25px;
 	padding-bottom: 25px;
 	font-family: "Helvetica Neue";
 	font-weight: 300;
-}
-
-.not_first_tweet {
-	margin: 25px auto 0;
 }
 
 .left_photo {

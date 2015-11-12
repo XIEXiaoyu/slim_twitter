@@ -1,4 +1,6 @@
 <?php
+// Start the session
+session_start();
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -21,10 +23,66 @@ $view->parserExtensions = array(
     new \Slim\Views\TwigExtension(),
 );
 
-$app->get('/', function () use($app){
- 	$app->render('timeline.html.twig');
-})->name('home');
 
+
+/* profile page */
+$app->get('/', function() use($app){
+	$user_id = $_SESSION["user_id"];
+	try
+	{
+		$db_twitter = new PDO('mysql:host=127.0.0.1;dbname=twitter', 'root', '');
+		$db_twitter->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$sql = "SELECT * FROM user_posts WHERE user_id = '$user_id'";
+		$sth = $db_twitter->prepare($sql);
+		$sth->execute();
+
+		if($sth->columnCount() == 0)
+		{
+			// 显示一个空白的profile page。
+			echo "The web page is under construction.";
+		}
+		else
+		{
+			// 显示该用户发过的所有的twitter, pagination
+			$results = $sth->fetchAll(PDO::FETCH_ASSOC);
+			$app->render('timeline.html.twig', $results); 
+		}
+	}
+	catch(PDOException $e)
+	{
+		echo $e->getMessage();
+		die();
+	}
+
+	$db_twitter = null; 
+});
+
+
+
+/* send a post page*/
+$app->post('/sendTwitter', function() use($app){
+	$user_id = $_SESSION["user_id"];
+	$msg = $app->request->post('msg');
+	$post_date = date("Y-m-d G:i:s");
+	try
+	{
+		$db_twitter = new PDO('mysql:host=127.0.0.1;dbname=twitter', 'root', '');
+		$db_twitter->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$sql = $db_twitter->prepare("INSERT INTO user_posts (user_id, msg, post_date) VALUES (?, ?, ?)");
+		$sql->bindParam(1, $user_id, PDO::PARAM_STR);
+		$sql->bindParam(2, $msg, PDO::PARAM_STR);
+		$sql->bindParam(3, $post_date, PDO::PARAM_STR);
+		$sql->execute();
+	}
+	catch(PDOException $e)
+	{
+		echo $e->getMessage();
+		die();
+	}
+	
+	$db_twitter = null; 
+	$app->render('timeline.html.twig');
+});
 
 
 /* signUp Page*/
@@ -165,7 +223,10 @@ $app->post('/logIn', function () use($app){
 				$id = $result[0]['id'];
 				if(password_verify($cleanPassword, $hash))
 				{
-					$app->redirect('/?id=$id'); // need to login to his own timeline
+					// Set session variables
+					$_SESSION["user_id"] = $id;
+
+					$app->redirect('/'); // need to login to his own timeline
 				}
 				else
 				{
